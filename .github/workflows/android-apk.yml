@@ -16,7 +16,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Extract Android project
-        run: unzip -o PIPAU_Digital_Starter.zip -d .
+        run: |
+          unzip -o PIPAU_Digital_Starter.zip -d temp_folder
+          rsync -avq temp_folder/ ./
+          rm -rf temp_folder
 
       - name: Set up Java
         uses: actions/setup-java@v4
